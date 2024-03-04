@@ -2,9 +2,22 @@
 
 require_once "autoload.php";
 
-$cartera = new Cartera();
+$connection = new Connection();
+$conn = $connection->getConn();
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+
 if (count($_POST) > 0) {
-	$cartera->insert($_POST);
+	
+	$id=$_POST["id"];
+	$company=$_POST["company"];
+	$investment=$_POST["investment"];
+	$date=$_POST["date"];
+	$active=$_POST["active"];
+	$query = "INSERT INTO `investment`(`id`, `company`, `investment`, `date`, `active`)
+			VALUES ('$id', '$company', '$investment', '$date', '$active')";
+	$result = $conn->query($query);
 	header("location: list.php");
 }
 

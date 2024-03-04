@@ -1,11 +1,11 @@
 <?php
 
-function autoloading($className){
-    $file = "classes/".$className.".php";
+function autoloading($class){
+    $file = "classes/{$class}.php";
     if(file_exists($file)){
         require_once $file;
     }else{
-        die("La clase $className no se encuentra.");
+        die("La clase $class no se encuentra.");
     }
 }
 

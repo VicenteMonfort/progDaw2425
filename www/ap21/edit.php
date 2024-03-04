@@ -2,13 +2,46 @@
 
 require_once "autoload.php";
 
-$cartera = new Cartera("data.csv");
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-$client = $cartera->getClient($id);
+$connection = new Connection();
+$conn = $connection->getConn();
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
 
-//Cuando hagamos submit, envía por post, ejecuta update de cartera y redirecciona a list.php
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+//consulta para recuperar todos los campos con el id
+
+$query = "SELECT `company` FROM `investment` WHERE `id`=$id";
+$result = $conn->query($query);
+$companyForm=$result->fetch_array(MYSQLI_NUM);
+$result->close();
+
+$query = "SELECT `investment` FROM `investment` WHERE `id`=$id";
+$result = $conn->query($query);
+$investmentForm=$result->fetch_array(MYSQLI_NUM);
+$result->close();
+
+$query = "SELECT `date` FROM `investment` WHERE `id`=$id";
+$result = $conn->query($query);
+$dateForm=$result->fetch_array(MYSQLI_NUM);
+$result->close();
+
+$query = "SELECT `active` FROM `investment` WHERE `id`=$id";
+$result = $conn->query($query);
+$activeForm=$result->fetch_array(MYSQLI_NUM);
+$result->close();
+
+
 if (count($_POST) > 0) {
-	$cartera->update($_POST);
+	$id=$_POST["id"];
+	$company=$_POST["company"];
+	$investment=$_POST["investment"];
+	$date=$_POST["date"];
+	$active=$_POST["active"];
+	//consulta para update con los datos. OJO: NO VA DATE POR ALGO DEL FORMATO
+	$query = "UPDATE `investment` SET `company`=$company,`investment`=$investment, `date`=$date, `active`=$active WHERE `id`=$id";
+	$result = $conn->query($query);
+
 	header("location: list.php");
 }
 
@@ -40,28 +73,28 @@ if (count($_POST) > 0) {
 				<li id="li_1">
 					<label class="description" for="id">ID </label>
 					<div>
-						<input id="id" name="id" class="element text small" type="text" maxlength="10" value="<?=$client->getId()?>" readonly/>
+						<input id="id" name="id" class="element text small" type="text" maxlength="10" value="<?=$id?>" readonly/>
 					</div>
 				</li>
 				<li id="li_2">
 					<label class="description" for="company">Company </label>
 					<div>
-						<input id="company" name="company" class="element text medium" type="text" maxlength="255" value="<?=$client->getCompany()?>" />
+						<input id="company" name="company" class="element text medium" type="text" maxlength="255" value="<?=$companyForm[0]?>" />
 					</div>
 				</li>
 				<li id="li_3">
 					<label class="description" for="investment">Investment </label>
 					<div>
-						<input id="investment" name="investment" type="number" value="<?=$client->getInvestment()?>" />
+						<input id="investment" name="investment" type="number" value="<?=$investmentForm[0]?>" />
 					</div>
 				</li>
 				<li id="li_4">
 					<label class="description" for="date">Date </label>
-					<input id="date" name="date" type="date" value="<?=$client->getDate()?>"/>
+					<input id="date" name="date" type="date" value="<?=$dateForm[0]?>"/>
 				</li>
 				<li id="li_5">
 					<span>
-						<input id="active" name="active" class="element checkbox" type="checkbox" value="1" <?= $client->getActive() ? "checked":""; ?>/>
+						<input id="active" name="active" class="element checkbox" type="checkbox" value="1" <?= $activeForm[0] ? "checked":""; ?>/>
 						<label class="choice" for="active">Active?</label>
 					</span>
 				</li>
