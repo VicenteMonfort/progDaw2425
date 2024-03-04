@@ -14,12 +14,5 @@ class Cartera
         return new Empresa(null, null, null, null, null);
     }
 
-   
-
-    public function delete($id)
-    {
-       
-    }
-
 }
 ?>
