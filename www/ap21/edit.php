@@ -39,7 +39,7 @@ if (count($_POST) > 0) {
 	$date=$_POST["date"];
 	$active=$_POST["active"];
 	//consulta para update con los datos. OJO: NO VA DATE POR ALGO DEL FORMATO
-	$query = "UPDATE `investment` SET `company`=$company,`investment`=$investment, `date`=$date, `active`=$active WHERE `id`=$id";
+	$query = "UPDATE `investment` SET `company`=$company,`investment`=$investment, `active`=$active WHERE `id`=$id";
 	$result = $conn->query($query);
 
 	header("location: list.php");
@@ -94,8 +94,8 @@ if (count($_POST) > 0) {
 				</li>
 				<li id="li_5">
 					<span>
-						<input id="active" name="active" class="element checkbox" type="checkbox" value="1" <?= $activeForm[0] ? "checked":""; ?>/>
-						<label class="choice" for="active">Active?</label>
+						<label class="description" for="active">Active?</label>
+						<input id="active" name="active" type="number" value="<?=$activeForm[0]?>"/>
 					</span>
 				</li>
 
