@@ -21,11 +21,5 @@ class Cartera
        
     }
 
-    public function update($datos)
-    {
-        
-        
-    }
-
 }
 ?>

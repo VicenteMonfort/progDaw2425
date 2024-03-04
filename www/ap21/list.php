@@ -37,7 +37,7 @@ $conn = $connection->getConn();
 
         $query = 'SELECT * From investment';
         $result = $conn->query($query);
-        //$result = mysqli_query($conn, $query);
+      
 
         echo '<table class="table table-striped">';
         echo '<tr>
