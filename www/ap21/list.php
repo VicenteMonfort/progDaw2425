@@ -67,15 +67,15 @@ $conn = $connection->getConn();
         //while ($value = $result->fetch_array(MYSQLI_ASSOC)){
             for ($i = $firstRow; $i <= $lastRow; $i++){
                 $result->data_seek($i);
-                $value = $result->fetch_row();
+                $value = $result->fetch_array(MYSQLI_ASSOC);
                 echo '<tr>';
-                echo '<td>' . $value[0] . '</td>';
-                echo '<td>' . $value[1] . '</td>';
-                echo '<td>' . $value[2] . '</td>';
-                echo '<td>' . $value[3] . '</td>';
-                echo '<td>' . $value[4] . '</td>';
-                echo "<td><a href='delete.php?id=" . $value[0] . "'><img src='img/del_icon.png' width='25'></a></td>";
-                echo "<td><a href='edit.php?id=" . $value[1] . "'><img src='img/edit_icon.png' width='25'></a></td>";
+                echo '<td>' . $value["id"] . '</td>';
+                echo '<td>' . $value["company"] . '</td>';
+                echo '<td>' . $value["investment"] . '</td>';
+                echo '<td>' . $value["date"] . '</td>';
+                echo '<td>' . $value["active"] . '</td>';
+                echo "<td><a href='delete.php?id=" . $value["id"] . "'><img src='img/del_icon.png' width='25'></a></td>";
+                echo "<td><a href='edit.php?id=" . $value["id"] . "'><img src='img/edit_icon.png' width='25'></a></td>";
                 echo '</tr>';
             }
         //} 
