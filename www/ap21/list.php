@@ -50,10 +50,6 @@ $conn = $connection->getConn();
 
         $lastRow = $firstRow + $rowsPag -1;
         $lastRow = ($lastRow > $numRows) ? $numRows-1 : $lastRow;
-
-        echo "pagina activa $pagActive";
-        echo " primera fila $firstRow";
-        echo " última fila $lastRow";
         
         echo '<table class="table table-striped">';
         echo '<tr>
