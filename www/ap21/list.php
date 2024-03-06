@@ -36,9 +36,25 @@ $conn = $connection->getConn();
         }
 
         $query = 'SELECT * From investment';
-        $result = $conn->query($query);
-      
 
+        $result = $conn->query($query);
+
+        //cálculos paginación
+ 
+        $numRows = $result->num_rows;
+        $rowsPag = 10;
+        $numPag = ceil ($numRows / $rowsPag);
+
+        $pagActive = (isset($_GET["page"])) ? $_GET["page"] : 1;
+        $firstRow = ($pagActive -1) * $rowsPag;
+
+        $lastRow = $firstRow + $rowsPag -1;
+        $lastRow = ($lastRow > $numRows) ? $numRows-1 : $lastRow;
+
+        echo "pagina activa $pagActive";
+        echo " primera fila $firstRow";
+        echo " última fila $lastRow";
+        
         echo '<table class="table table-striped">';
         echo '<tr>
                 <th>Id</th>
@@ -48,18 +64,33 @@ $conn = $connection->getConn();
                 <th>Active</th>
                 <th colspan="2">Actions</th>
             </tr>';
-        while($value = $result->fetch_array(MYSQLI_ASSOC)){
-            echo '<tr>';
-            foreach($value as $element){
-                echo '<td>' . $element . '</td>';
+        //while ($value = $result->fetch_array(MYSQLI_ASSOC)){
+            for ($i = $firstRow; $i <= $lastRow; $i++){
+                $result->data_seek($i);
+                $value = $result->fetch_row();
+                echo '<tr>';
+                echo '<td>' . $value[0] . '</td>';
+                echo '<td>' . $value[1] . '</td>';
+                echo '<td>' . $value[2] . '</td>';
+                echo '<td>' . $value[3] . '</td>';
+                echo '<td>' . $value[4] . '</td>';
+                echo "<td><a href='delete.php?id=" . $value[0] . "'><img src='img/del_icon.png' width='25'></a></td>";
+                echo "<td><a href='edit.php?id=" . $value[1] . "'><img src='img/edit_icon.png' width='25'></a></td>";
+                echo '</tr>';
             }
-            echo "<td><a href='delete.php?id=" . $value["id"] . "'><img src='img/del_icon.png' width='25'></a></td>";
-            echo "<td><a href='edit.php?id=" . $value["id"] . "'><img src='img/edit_icon.png' width='25'></a></td>";
-            echo '</tr>';
-        }
+        //} 
         echo '</table>';
 
+        for ($i=1; $i <= $numPag; $i++){
+            if($i==$pagActive){
+                echo " <strong>$i</strong> ";
+            }else{
+                echo " <a href='list.php?page=$i'>$i</a> ";
+            }
+        }
+
         $result->close();
+
         ?>
         </tbody>
     </table>
