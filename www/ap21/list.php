@@ -77,6 +77,9 @@ $conn = $connection->getConn();
         //} 
         echo '</table>';
 
+        $pagBefore = ($pagActive==1) ? 1 : $pagActive-1;
+        echo " <a href='list.php?page=$pagBefore'><</a> ";
+
         for ($i=1; $i <= $numPag; $i++){
             if($i==$pagActive){
                 echo " <strong>$i</strong> ";
@@ -84,6 +87,8 @@ $conn = $connection->getConn();
                 echo " <a href='list.php?page=$i'>$i</a> ";
             }
         }
+        $pagAfter = ($pagActive==$numPag) ?  $numPag : $pagActive+1;
+        echo " <a href='list.php?page=$pagAfter'>></a> ";
 
         $result->close();
 
