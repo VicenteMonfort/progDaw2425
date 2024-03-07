@@ -65,11 +65,9 @@ $conn = $connection->getConn();
                 $result->data_seek($i);
                 $value = $result->fetch_array(MYSQLI_ASSOC);
                 echo '<tr>';
-                echo '<td>' . $value["id"] . '</td>';
-                echo '<td>' . $value["company"] . '</td>';
-                echo '<td>' . $value["investment"] . '</td>';
-                echo '<td>' . $value["date"] . '</td>';
-                echo '<td>' . $value["active"] . '</td>';
+                foreach ($value as $data){
+                    echo '<td>' . $data . '</td>';
+                }
                 echo "<td><a href='delete.php?id=" . $value["id"] . "'><img src='img/del_icon.png' width='25'></a></td>";
                 echo "<td><a href='edit.php?id=" . $value["id"] . "'><img src='img/edit_icon.png' width='25'></a></td>";
                 echo '</tr>';

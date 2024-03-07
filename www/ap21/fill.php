@@ -31,7 +31,6 @@ for ($i=1;$i<50;$i++){
 	$query = "INSERT INTO `investment`(`id`, `company`, `investment`, `date`, `active`)
 			VALUES ('$id', '$company', '$investment', '$date', '$active')";
 	$result = $conn->query($query);
-}
-	
+}	
 
 ?>
