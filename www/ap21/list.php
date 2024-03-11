@@ -42,13 +42,13 @@ $conn = $connection->getConn();
         //cálculos paginación
  
         $numRows = $result->num_rows;
-        $rowsPag = 10;
+        $rowsPag = 5;
         $numPag = ceil ($numRows / $rowsPag);
 
         $pagActive = (isset($_GET["page"])) ? $_GET["page"] : 1;
         $firstRow = ($pagActive -1) * $rowsPag;
 
-        $lastRow = $firstRow + $rowsPag -1;
+        $lastRow = $firstRow + $rowsPag -1 ;
         $lastRow = ($lastRow > $numRows) ? $numRows-1 : $lastRow;
         
         echo '<table class="table table-striped">';
