@@ -1,7 +1,7 @@
 <?php
 require_once("autoloader.php");
 $lista = new Modelo();
-//$lista->init("tareas.csv");
+$lista->init("tareas.csv");
 ?>
 <!DOCTYPE html>
 <html lang="en">
