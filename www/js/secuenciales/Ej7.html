@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+    <p id="resultado"></p>
+    <script>
+        let x1 = parseInt(prompt('Escribe la coordenada X del primer punto: '));
+        let y1 = parseInt(prompt('Escribe la coordenada Y del primer punto: '));
+        let x2 = parseInt(prompt('Escribe la coordenada X del segundo punto: '));
+        let y2 = parseInt(prompt('Escribe la coordenada Y del segundo punto: '));
+
+        let distancia = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** (1 / 2);
+
+        document.getElementById("resultado").innerHTML = "La distancia entre (" + x1 + "," + y1 + ") y (" + x2 + "," + y2 + ") es: " + distancia;
+    </script>
+</body>
+
+</html>

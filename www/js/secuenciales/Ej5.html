@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+    <p id="resultado"></p>
+    <script>
+        let radio = parseInt(prompt('Escribe el radio de la circunferencia de la figura: '));
+        let altura = parseInt(prompt('Escribe la altura hasta el centro de la circunferencia de la figura: '));
+
+        const pi = 3.1416;
+        let areaSemiCircunferencia = (pi * radio ** 2) / 2;
+
+        let areaDobleTriangulo = radio * altura;
+        let area = areaSemiCircunferencia + areaDobleTriangulo;
+
+        window.alert("El área de la figura resultante es: " + area);
+    </script>
+</body>
+
+</html>
