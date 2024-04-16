@@ -69,7 +69,7 @@ function starH1() {
 
 function colorFondo() {
     let color = window.getComputedStyle(this).getPropertyValue("background-color");
-    console.log(color);
+    
     this.style.backgroundColor = (color == 'rgb(144, 238, 144)') ? 'rgb(173, 216, 230)' : 'rgb(144, 238, 144)';
 }
 

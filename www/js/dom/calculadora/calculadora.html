@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @font-face {
+        font-family: 'lcd';
+        src: url('DB_LCD_Temp-Black.ttf');
+    }
+    *{font-size: 100%;}
+    body {
+        display:flex;
+      }
+    form{
+        margin: auto;
+        width:17.1em; 
+        padding:0.3em;
+        border:1px solid lightskyblue;
+    }
+    #teclado li{
+        display: inline-block;
+        border:1px solid grey;
+        background-color: lightgray;
+        color:black;
+        text-shadow: 2px 2px darkgray;
+        width:3em;
+        margin:0.3em;
+        text-align: center;
+        cursor: pointer;
+    }
+    #teclado {
+        padding:0px;
+        margin:0px;
+        text-align: center;
+        overflow: hidden;
+        width:17em;
+        border:1px solid lightskyblue;
+    }
+    #teclado li:hover{
+        cursor: hand;
+    }
+    #pantalla {
+        font-family: lcd;
+        width:16em; 
+        height: 2em;
+        margin: 0px 0px 0.3em 0px;
+        text-align: right;
+    }
+
+</style>
+<script src="calculadora.js"></script>
+<body>
+    <form action="">
+        <input type="text" id="pantalla">
+        <ul id="teclado">
+            <li class="boton">1</li>
+            <li class="boton">2</li>
+            <li class="boton">3</li>
+            <li class="boton">+</li>
+            <li class="boton">4</li>
+            <li class="boton">5</li>
+            <li class="boton">6</li>
+            <li class="boton">-</li>
+            <li class="boton">7</li>
+            <li class="boton">8</li>
+            <li class="boton">9</li>
+            <li class="boton">*</li>
+            <li class="boton">0</li>
+            <li id="resultado">=</li>
+            <li id="borrar">C</li>
+            <li class="boton">/</li>
+            <li class="boton">.</li>
+            <li id="retroceso">&lt;&lt;</li>
+        </ul>
+    </form>
+</body>
+</html>
