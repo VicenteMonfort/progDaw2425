@@ -77,7 +77,6 @@ function colorFondo() {
 function tamLetra() {
     let tamanoOriginal = window.getComputedStyle(document.body).getPropertyValue('font-size');
     tamanoDocument = (parseFloat(tamanoOriginal.slice(0, -2)) * 2 + 1) + tamanoOriginal.slice(-2);
-    /* console.log(tamanoDocument); */
     let tamano = window.getComputedStyle(this).getPropertyValue('font-size');
     tamano = (parseFloat(tamano.slice(0, -2)) + 1) + tamano.slice(-2);
     this.style.fontSize = (tamano != tamanoDocument) ? tamano : tamanoOriginal;
@@ -86,7 +85,7 @@ function tamLetra() {
 //ejercicio 7
 
 function ocultar(ele) {
-    let hermano = ele.nextSibling;;
+    let hermano = ele.nextSibling;
     while (hermano.nodeName != "DIV") {
         hermano = hermano.nextSibling;
     };
