@@ -7,6 +7,6 @@ let anno = 2018;
 
 for (let numFechas = 0; numFechas < totalFechas; numFechas++) {
     let mes = parseInt(Math.random() * 12);
-    let dia = parseInt(Math.random() * dias[mes] + 1);
+    let dia = parseInt((Math.random() * dias[mes]))+ 1;
     document.getElementById("salidas").innerHTML += "Fecha " + (numFechas + 1) + ": " + dia + " de " + meses[mes] + " de " + anno + "<br>";
 }

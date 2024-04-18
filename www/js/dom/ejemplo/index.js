@@ -1,4 +1,4 @@
-
+//Ejercicio 1
 document.addEventListener("DOMContentLoaded", main);
 
 function main() {
