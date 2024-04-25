@@ -75,11 +75,17 @@ function colorFondo() {
 
 //Ejercicio 6
 function tamLetra() {
+    /*con restricción de volver al original si supera el doble
     let tamanoOriginal = window.getComputedStyle(document.body).getPropertyValue('font-size');
     tamanoDocument = (parseFloat(tamanoOriginal.slice(0, -2)) * 2 + 1) + tamanoOriginal.slice(-2);
     let tamano = window.getComputedStyle(this).getPropertyValue('font-size');
     tamano = (parseFloat(tamano.slice(0, -2)) + 1) + tamano.slice(-2);
-    this.style.fontSize = (tamano != tamanoDocument) ? tamano : tamanoOriginal;
+    this.style.fontSize = (tamano != tamanoDocument) ? tamano : tamanoOriginal;*/
+
+    //sin restricción de volver al original cuando supere el doble
+    let tamano = window.getComputedStyle(this).getPropertyValue('font-size');
+    tamano = (parseFloat(tamano.slice(0, -2)) + 1) + tamano.slice(-2);
+    this.style.fontSize = (parseFloat(tamano.slice(0, -2)) + 1) + tamano.slice(-2);
 }
 
 //ejercicio 7
