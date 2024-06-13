@@ -148,4 +148,38 @@ class Modelo extends Conexion
             echo "0 results";
         }
     }
+
+    public function showNavigator()
+    {
+        $currentPage = $this->getState("page", 1);
+        $registersTotal = $this->getTotalOfTasks();
+        $pagesTotal = ceil($registersTotal / $this->registersPerPage);
+        $output = "";
+        for ($i = 1; $i <= $pagesTotal; $i++) {
+            if ($i == $currentPage) {
+                $output .= "<strong>$i</strong>";
+            } else {
+                $output .= "<a href='?page=$i'>$i</a> ";
+            }
+        }
+        return $output;
+    }
+
+    private function getState($variable, $default)
+    {
+        if (isset($_GET[$variable])) {
+            $_SESSION[$variable] = $_GET[$variable];
+            return $_GET[$variable];
+        } elseif (isset($_SESSION[$variable])) {
+            return $_SESSION[$variable];
+        } else {
+            return $default;
+        }
+    }
+
+    public function getTotalOfTasks()
+    {
+        $sql = "SELECT COUNT(*) as TOTAL FROM PEDIDO";
+        return $this->conn->query($sql)->fetch_assoc()["TOTAL"];
+    }
 }
