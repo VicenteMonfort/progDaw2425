@@ -13,7 +13,7 @@ $media = 0;
 
 $datosValidos = true;
 
-for ($i=0;$i<count($arr)){
+for ($i=0;$i<count($arr);$i++){
     
 }
 
